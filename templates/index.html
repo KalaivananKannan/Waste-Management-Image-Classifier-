@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Waste Management Image Classifier</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>♻ Waste Management Image Classifier</h1>
+
+        <p>
+            Upload a waste image (JPG, JPEG, PNG) and let AI classify it.
+        </p>
+
+        <form action="/predict" method="post" enctype="multipart/form-data">
+
+            <input type="file"
+                   name="image"
+                   accept=".jpg,.jpeg,.png"
+                   required>
+
+            <button type="submit">
+                Analyze Image
+            </button>
+
+        </form>
+
+        {% if prediction %}
+
+        <div class="result">
+
+            <img src="{{ image_path }}">
+
+            <h2>Prediction: {{ prediction }}</h2>
+
+            <h3>Confidence: {{ confidence }}%</h3>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</body>
+
+</html>
